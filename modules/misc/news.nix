@@ -1309,6 +1309,14 @@ in
           A new module is available: 'programs.ruff'.
         '';
       }
+
+      {
+        time = "2023-12-29T08:22:40+00:00";
+        condition = hostPlatform.isLinux;
+        message = ''
+          A new module is available: 'programs.bemenu'.
+        '';
+      }
     ];
   };
 }
