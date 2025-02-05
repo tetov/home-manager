@@ -100,9 +100,7 @@ in {
 
     importantPrefixes = lib.mkOption {
       type = with lib.types; listOf str;
-      default = [ "$" "bezier" "monitor" "size" ]
-        ++ lib.optionals cfg.sourceFirst [ "source" ];
-      example = [ "$" "bezier" "monitor" "size" ];
+      default = [ "$" "bezier" "monitor" "size" ];
       description = ''
         List of prefix of attributes to source at the top of the config.
       '';
@@ -118,7 +116,8 @@ in {
         text = lib.optionalString (cfg.settings != { })
           (lib.hm.generators.toHyprconf {
             attrs = cfg.settings;
-            inherit (cfg) importantPrefixes;
+            importantPrefixes = cfg.importantPrefixes
+              ++ lib.optional cfg.sourceFirst "source";
           }) + lib.optionalString (cfg.extraConfig != null) cfg.extraConfig;
       };
   };
