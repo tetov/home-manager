@@ -35,12 +35,10 @@ let
   # Make sure the used package is scrubbed to avoid actually
   # instantiating derivations.
   scrubbedPkgsModule = {
-    imports = [{
-      _module.args = {
-        pkgs = lib.mkForce (scrubDerivations "pkgs" pkgs);
-        pkgs_i686 = lib.mkForce { };
-      };
-    }];
+    _module.args = {
+      pkgs = lib.mkForce (scrubDerivations "pkgs" pkgs);
+      pkgs_i686 = lib.mkForce { };
+    };
   };
 
   dontCheckDefinitions = { _module.check = false; };
