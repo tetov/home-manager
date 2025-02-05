@@ -92,11 +92,10 @@ in {
       '';
     };
 
-    sourceFirst = lib.mkEnableOption ''
-      putting source entries at the top of the configuration
-    '' // {
-      default = true;
-    };
+    sourceFirst = lib.mkEnableOption
+      "putting source entries at the top of the configuration" // {
+        default = true;
+      };
 
     importantPrefixes = lib.mkOption {
       type = with lib.types; listOf str;
